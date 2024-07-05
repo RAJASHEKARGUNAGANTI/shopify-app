@@ -38,6 +38,7 @@ app.post(
 // also add a proxy rule for them in web/frontend/vite.config.js
 
 app.use("/api/*", shopify.validateAuthenticatedSession());
+app.use("admin/api/*", shopify.validateAuthenticatedSession());
 
 app.use(express.json());
 app.use(cors()); // Enable CORS for all routes
@@ -82,13 +83,27 @@ app.get('/api/2024-04/products', async(req,res)=>{
 //   }
 // });
 
-app.get("/api/2024-07/themes", async (req, res) => {
-  await shopify.api.rest.Theme.all({
+app.get("/test",  (req, res) => {
+  console.log("Request: "+ req)
+  let themeInfo =  shopify.api.rest.Theme.all({
     session: res.locals.shopify.session,
   });
-  console.log("Theme json")
-res.status(200).send(res);
+res.status(200).send(themeInfo);
 })
+
+
+// app.get("/test" , async(req, res)=>{
+//   const client = new shopify.api.clients.Rest({session});
+// const data = await client.get({
+//   path: '/admin/oauth/access_scopes.json',
+// });
+//   await shopify.api.rest.Theme.all({
+//     session: res.locals.shopify.session
+//   });
+//   console.log("=======================================" + req)
+//   console.log("======================================="+ res)
+//   return res.status(200).json(res);
+// })
 
 
 

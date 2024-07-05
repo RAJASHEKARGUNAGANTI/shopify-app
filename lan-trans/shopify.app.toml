@@ -3,7 +3,7 @@
 client_id = "d27874abc905f29ff2394ccb415c3df9"
 name = "lan-trans"
 handle = "lan-trans"
-application_url = "https://enters-oecd-corpus-mini.trycloudflare.com"
+application_url = "https://been-toddler-diane-er.trycloudflare.com"
 embedded = true
 
 [build]
@@ -17,9 +17,9 @@ scopes = "read_metaobject_definitions,read_metaobjects,read_orders,read_products
 
 [auth]
 redirect_urls = [
-  "https://enters-oecd-corpus-mini.trycloudflare.com/auth/callback",
-  "https://enters-oecd-corpus-mini.trycloudflare.com/auth/shopify/callback",
-  "https://enters-oecd-corpus-mini.trycloudflare.com/api/auth/callback"
+  "https://been-toddler-diane-er.trycloudflare.com/auth/callback",
+  "https://been-toddler-diane-er.trycloudflare.com/auth/shopify/callback",
+  "https://been-toddler-diane-er.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]

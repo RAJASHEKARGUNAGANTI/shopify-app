@@ -7,6 +7,7 @@ import { ModalContent, TitleBar } from "@shopify/app-bridge-react";
 import { useAuthenticatedFetch } from "../hooks";
 import { useEffect, useState } from "react";
 import ProductCard from "../components/ProductCard";
+import axios from 'axios'
 
 
 export default function HomePage() {
@@ -15,6 +16,7 @@ export default function HomePage() {
   const [products, setProducts] = useState([]);
   const [product, setProduct] = useState(null);
   const [isModelOpen, setImodelOpen] = useState(false);
+  const [themeData, setThemeData] = useState(null);
 
   const handleClick =(product)=>{
     setProduct(product);
@@ -89,14 +91,41 @@ export default function HomePage() {
   // };
   
 
+
+    const fetchThemeData = async () => {
+      try {
+        const shop = "dev-xl.myshopify.com"; // Replace with your shop name
+        const response = await fetch(`/test`);
+        alert(response);
+        console.log(response);
+        if (response.status !== 200) {
+          throw new Error(`Error fetching themes: ${response.statusText}`);
+        }
+        console.log("API Response:", response.body); // Log the raw response
+        // const activeTheme = response.data.themes.find(theme => theme.role === 'main');
+        setThemeData(activeTheme);
+      } catch (error) {
+        if (error.response) {
+          console.error("Error response:", error.response.data);
+        } else if (error.request) {
+          console.error("No response received:", error.request);
+        } else {
+          console.error("Error setting up request:", error.message);
+        }
+      }
+    };
+
+ 
+
+
   const getThemeId = async () => {
-    try {
-      const response = await fetch('/api/2024-07/themes');
-    const data = await response.json();
-    const activeTheme = data.themes.find(theme => theme.role === 'main');
-    return activeTheme.id;
-    } catch (error) {
-      console.log(error.message);
+
+    alert();
+    fetchThemeData();
+    if (themeData) {
+      return themeData.id;
+    } else {
+      console.log('Theme data not available');
     }
   };
   
